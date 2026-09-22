@@ -1,0 +1,19 @@
+[project]
+name = "createch"
+version = "0.1.0"
+description = "Cours d'IA et de deep learning — ESILV Creative Technologist A4/A5, 2026-2027"
+requires-python = ">=3.13"
+dependencies = [
+    "torch>=2.14",
+    "torchvision>=0.29",
+    "numpy>=2.5",
+    "matplotlib>=3.11",
+    "scikit-learn>=1.9",
+    "tensorboard>=2.21",
+    "graphviz>=0.21",
+    "ipykernel>=7.3",
+    "jupyterlab>=4.4",
+]
+
+[tool.uv]
+package = false

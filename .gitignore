@@ -1,0 +1,24 @@
+# Datasets téléchargés par torchvision (plusieurs centaines de Mo)
+data/
+
+# Sorties d'entraînement
+runs/
+figures/
+*.pth
+*.pt
+
+# Environnement
+.venv/
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Éditeurs et OS
+.vscode/
+.idea/
+.DS_Store
+
+# État de session Claude Code
+.claude/
