@@ -151,10 +151,10 @@ PyTorch utilise le CPU par défaut ; `cifar10.ipynb` détecte tout seul un GPU (
 
 Des vidéos pour _voir_ ce que fait une convolution et ce que calcule un réseau, en complément de `cifar10.ipynb`.
 
-- [Deepia](https://www.youtube.com/@Deepia-ls2fo) — chaîne d'animations (réalisées avec Manim) sur le deep learning :
+- [Deepia](https://www.youtube.com/@Deepia-ls2fo) — chaîne d'animations sur le deep learning :
   - [_Convolutional Neural Networks_](https://www.youtube.com/watch?v=8NbXFoVk1mo) : le contexte, les filtres, le fonctionnement d'une couche convolutive, les fonctions d'activation et le pooling.
   - [_CNN Receptive Field_](https://www.youtube.com/watch?v=ip2HYPC_T9Q) : ce que « voit » chaque neurone à mesure qu'on empile les couches.
-- 3Blue1Brown — [_But what is a convolution?_](https://www.youtube.com/watch?v=KuXjwB4LzSA) (vidéo, 23 min) : la convolution discrète, des moyennes glissantes au traitement d'image (flou, détection de contours), c'est-à-dire l'opération que les filtres d'un CNN appliquent aux pixels.
+- 3Blue1Brown — [_But what is a convolution?_](https://www.youtube.com/watch?v=KuXjwB4LzSA) : la convolution discrète, des moyennes glissantes au traitement d'image (flou, détection de contours), c'est-à-dire l'opération que les filtres d'un CNN appliquent aux pixels.
 
 ### uv
 
