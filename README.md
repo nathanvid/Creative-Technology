@@ -12,13 +12,14 @@ Comprendre le deep learning en le reconstruisant à la main : de la dérivée d'
 
 ```text
 .
-├── notebooks/
-│   ├── micrograd.ipynb    # séance 1 — rétropropagation reconstruite à la main
-│   ├── mnist.ipynb        # séance 1 — premier réseau avec PyTorch
-│   ├── cifar10.ipynb      # séance 1 — réseaux convolutifs (CNN)
+├── seance-1/              # Séance 1 — des dérivées au réseau convolutif
+│   ├── slides.pdf         # support de cours
+│   ├── micrograd.ipynb    # rétropropagation reconstruite à la main
+│   ├── mnist.ipynb        # premier réseau avec PyTorch
+│   ├── cifar10.ipynb      # réseaux convolutifs (CNN)
 │   ├── data/              # datasets (créé au premier lancement, non versionné)
 │   └── runs/              # courbes TensorBoard (créé à l'exécution, non versionné)
-├── slides/                # supports de cours
+├── seance-2/              # … un dossier par séance, ajouté au fil du module
 ├── pyproject.toml         # dépendances du projet
 ├── uv.lock                # versions exactes, identiques pour tout le monde
 └── .python-version        # version de Python attendue (3.13)
@@ -71,7 +72,7 @@ Il y a deux façons équivalentes de travailler dans l'environnement `.venv`.
 ```bash
 uv run python --version
 uv run jupyter lab
-uv run tensorboard --logdir notebooks/runs
+uv run tensorboard --logdir seance-1/runs
 ```
 
 **Option B — en l'activant, comme un venv classique.** Le prompt affiche alors `(createch)` et `python`, `jupyter` et `tensorboard` pointent vers `.venv/`.
@@ -94,7 +95,7 @@ uv run python -c "import torch; print(torch.__version__)"
 
 ### Les notebooks
 
-Les notebooks se suivent, chacun réutilise les idées du précédent :
+Chaque séance a son dossier (`seance-1/`, `seance-2/`…) avec ses slides et ses notebooks. Dans une séance, les notebooks se suivent, chacun réutilise les idées du précédent :
 
 1. `micrograd.ipynb` — la dérivée, la rétropropagation, un neurone, un petit réseau. Aucune donnée à télécharger.
 2. `mnist.ipynb` — les mêmes idées avec PyTorch, sur des chiffres manuscrits.
@@ -104,17 +105,17 @@ Exécutez les cellules dans l'ordre (`Shift + Entrée`), ou d'un coup via _Run �
 
 ### Données et dossier de travail
 
-`mnist.ipynb` et `cifar10.ipynb` téléchargent leur dataset au premier lancement (quelques centaines de Mo, connexion nécessaire). Ils écrivent dans le **dossier courant du notebook**, soit ici `notebooks/data/` pour les données et `notebooks/runs/` pour les courbes. Ces deux dossiers sont ignorés par git : ils se recréent tout seuls, on peut les supprimer sans risque pour repartir de zéro.
+`mnist.ipynb` et `cifar10.ipynb` téléchargent leur dataset au premier lancement (quelques centaines de Mo, connexion nécessaire). Ils écrivent dans le **dossier courant du notebook**, soit par exemple `seance-1/data/` pour les données et `seance-1/runs/` pour les courbes. Ces deux dossiers sont ignorés par git : ils se recréent tout seuls, on peut les supprimer sans risque pour repartir de zéro.
 
 ### Suivre les entraînements avec TensorBoard
 
 Les notebooks MNIST et CIFAR-10 enregistrent leurs courbes. Pour les visualiser, lancez dans un second terminal, à la racine du dépôt :
 
 ```bash
-uv run tensorboard --logdir notebooks/runs
+uv run tensorboard --logdir seance-1/runs
 ```
 
-Puis ouvrez <http://localhost:6006>. On peut aussi cibler une seule expérience, par exemple `--logdir notebooks/runs/cifar10`. Les notebooks indiquent, après chaque expérience, quel onglet regarder.
+Puis ouvrez <http://localhost:6006>. On peut aussi cibler une seule expérience, par exemple `--logdir seance-1/runs/cifar10`. Les notebooks indiquent, après chaque expérience, quel onglet regarder.
 
 ### Accélérateur (GPU)
 
@@ -124,10 +125,10 @@ PyTorch utilise le CPU par défaut ; `cifar10.ipynb` détecte tout seul un GPU (
 
 ### Séance 1 — Des dérivées au réseau convolutif
 
-- **`notebooks/micrograd.ipynb`** — reconstruction, à la main, du moteur de différentiation automatique de [micrograd](https://github.com/karpathy/micrograd) : dérivée, classe `Value`, graphe de calcul, rétropropagation, puis `Neuron` / `Layer` / `MLP` entraînés sur un petit exemple.
-- **`notebooks/mnist.ipynb`** — premier vrai réseau de neurones avec PyTorch, entraîné sur MNIST : tenseurs et autograd, `Dataset` / `DataLoader`, boucle d'entraînement, évaluation (matrice de confusion).
-- **`notebooks/cifar10.ipynb`** — passage aux réseaux convolutifs (CNN) sur CIFAR-10, puis un duel CNN contre MLP à budget égal.
-- Slides : Séance 1 - Présentation du Deep Learning. |
+- **`seance-1/micrograd.ipynb`** — reconstruction, à la main, du moteur de différentiation automatique de [micrograd](https://github.com/karpathy/micrograd) : dérivée, classe `Value`, graphe de calcul, rétropropagation, puis `Neuron` / `Layer` / `MLP` entraînés sur un petit exemple.
+- **`seance-1/mnist.ipynb`** — premier vrai réseau de neurones avec PyTorch, entraîné sur MNIST : tenseurs et autograd, `Dataset` / `DataLoader`, boucle d'entraînement, évaluation (matrice de confusion).
+- **`seance-1/cifar10.ipynb`** — passage aux réseaux convolutifs (CNN) sur CIFAR-10, puis un duel CNN contre MLP à budget égal.
+- **`seance-1/slides.pdf`** — slides : présentation du Deep Learning.
 
 ## Ressources externes
 
