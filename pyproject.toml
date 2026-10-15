@@ -13,6 +13,7 @@ dependencies = [
     "graphviz>=0.21",
     "ipykernel>=7.3",
     "jupyterlab>=4.4",
+    "tiktoken>=0.14.0",
 ]
 
 [tool.uv]
