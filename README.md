@@ -12,28 +12,25 @@ Comprendre le deep learning en le reconstruisant à la main : de la dérivée d'
 
 ```text
 .
-├── seance-1/              # Séance 1 — des dérivées au réseau convolutif
-│   ├── slides.pdf         # support de cours
-│   ├── micrograd.ipynb    # rétropropagation reconstruite à la main
-│   ├── mnist.ipynb        # premier réseau avec PyTorch
-│   ├── cifar10.ipynb      # réseaux convolutifs (CNN)
-│   ├── data/              # datasets (créé au premier lancement, non versionné)
-│   └── runs/              # courbes TensorBoard (créé à l'exécution, non versionné)
-├── seance-2/              # Séance 2 — du bigramme au GPT (NLP)
-│   ├── 01_texte_vers_nombres.ipynb  # vocabulaire, encodage, lots
-│   ├── 02_bigram.ipynb              # compter les paires de caractères
-│   ├── 03_embeddings.ipynb          # vecteurs appris, MLP de Bengio
-│   ├── 04_rnn.ipynb                 # réseau récurrent, LSTM
-│   ├── 05_self_attention.ipynb      # query, key, value
-│   ├── 06_transformer.ipynb         # assembler un GPT caractère
-│   ├── 07_generation.ipynb          # température, top-k
-│   ├── 08_bpe.ipynb                 # tokenisation BPE, tiktoken
-│   ├── data/                        # corpus (créé au premier lancement, non versionné)
-│   ├── runs/                        # courbes TensorBoard (non versionné)
-│   └── checkpoints/                 # modèle entraîné par 06, relu par 07 (non versionné)
-├── pyproject.toml         # dépendances du projet
-├── uv.lock                # versions exactes, identiques pour tout le monde
-└── .python-version        # version de Python attendue (3.13)
+├── seance-1/
+│   ├── slides.pdf
+│   ├── micrograd.ipynb
+│   ├── mnist.ipynb
+│   ├── cifar10.ipynb
+│   └── data/
+├── seance-2/
+│   ├── 01_texte_vers_nombres.ipynb
+│   ├── 02_bigram.ipynb
+│   ├── 03_embeddings.ipynb
+│   ├── 04_rnn.ipynb
+│   ├── 05_self_attention.ipynb
+│   ├── 06_transformer.ipynb
+│   ├── 07_generation.ipynb
+│   ├── 08_bpe.ipynb
+│   └── data/
+├── pyproject.toml
+├── uv.lock
+└── .python-version
 ```
 
 ## Installation
@@ -101,39 +98,6 @@ Pour vérifier que tout fonctionne :
 ```bash
 uv run python -c "import torch; print(torch.__version__)"
 ```
-
-## Utiliser les notebooks
-
-### Les notebooks
-
-Chaque séance a son dossier (`seance-1/`, `seance-2/`…) avec ses slides et ses notebooks. Dans une séance, les notebooks se suivent, chacun réutilise les idées du précédent :
-
-- **Séance 1** : `micrograd` → `mnist` → `cifar10`.
-- **Séance 2** : dans l'ordre de leur numéro, de `01_texte_vers_nombres` à `08_bpe`. Le notebook `07_generation` reprend le modèle entraîné par `06_transformer` : lancez le 06 d'abord.
-
-Le détail de chaque notebook est dans [Ce qu'on a fait](#ce-quon-a-fait). Exécutez les cellules dans l'ordre (`Shift + Entrée`), ou d'un coup via _Run → Run All Cells_.
-
-### Données et dossier de travail
-
-Les notebooks écrivent dans le **dossier courant du notebook** : `seance-1/data/`, `seance-2/data/`, etc. pour les données, et `runs/` pour les courbes. Ces dossiers sont ignorés par git : ils se recréent tout seuls, on peut les supprimer sans risque pour repartir de zéro.
-
-- **Séance 1** : `mnist.ipynb` et `cifar10.ipynb` téléchargent leur dataset au premier lancement (quelques centaines de Mo, connexion nécessaire). `micrograd.ipynb` n'a besoin d'aucune donnée.
-- **Séance 2** : deux petits corpus sont téléchargés au premier lancement, une liste de 32 000 prénoms (`names.txt`, ~230 Ko, notebooks 02 à 04) et les pièces de Shakespeare (`input.txt`, ~1 Mo, notebooks 01 et 06 à 08). Le notebook 05 n'utilise aucune donnée. `06_transformer.ipynb` enregistre aussi le modèle entraîné dans `seance-2/checkpoints/gpt_char.pt`, que `07_generation.ipynb` recharge.
-
-### Suivre les entraînements avec TensorBoard
-
-Les notebooks MNIST, CIFAR-10 et Transformer enregistrent leurs courbes. Pour les visualiser, lancez dans un second terminal, à la racine du dépôt :
-
-```bash
-uv run tensorboard --logdir seance-1/runs
-uv run tensorboard --logdir seance-2/runs
-```
-
-Puis ouvrez <http://localhost:6006>. On peut aussi cibler une seule expérience, par exemple `--logdir seance-1/runs/cifar10`. Les notebooks indiquent, après chaque expérience, quel onglet regarder.
-
-### Accélérateur (GPU)
-
-PyTorch utilise le CPU par défaut ; `cifar10.ipynb` et `06_transformer.ipynb` détectent tout seuls un GPU (`mps` sur Mac Apple Silicon, `cuda` sur NVIDIA) et s'en servent s'il existe. Les modèles du module sont petits : tout tourne aussi sur CPU, simplement plus lentement pour les CNN et le Transformer (quelques minutes sur `mps` pour `06_transformer.ipynb`, nettement plus sur CPU).
 
 ## Ce qu'on a fait
 
